@@ -1,10 +1,9 @@
 <template>
   <div>
-    <navigation>
-      <nuxt-link tag="li" class="button" to="/" exact><a>{{ $t('home') }}</a></nuxt-link>
-      <nuxt-link tag="li" class="button" to="/todo" exact><a>{{ $t('todos') }}</a></nuxt-link>
-    </navigation>
-    <nuxt/>
+    <navigation></navigation>
+    <main>
+      <nuxt/>
+    </main>
   </div>
 </template>
 

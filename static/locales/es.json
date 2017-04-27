@@ -1,9 +1,7 @@
 {
-  "home": "Inicio",
-  "todos": "Tareas",
-  "hello": "Hola etéreos",
-  "weAreAwesome": "Somos cojonudos",
-  "reallyAwesome": "De verdad, realmente somos cojonudos",
-  "spanish": "Español",
-  "english": "Inglés"
+  "navigation": {
+    "home": "Inicio",
+    "blog": "Blog",
+    "me": "Yo"
+  }
 }

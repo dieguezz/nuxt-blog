@@ -1,108 +1,67 @@
-<template>
-    <footer class="navigation">
-      <div class="ink-bar">
-        <div class="ink" :style="{ transform: `translate3d(${computedOffset}px,0,0)`, width: `${computedWidth}px` }"></div>
-      </div>
-      <div class="layout-row layout-align-space-between-center">
-      <nav>
-        <h1 class="hidden">Navigation menu</h1>
-        <ul class="layout-row">
-          <slot></slot>
-        </ul>
-      </nav>
-      <div>
-        <ul>
-          <li @click="setLang('es')">{{ $t('spanish') }}</li>
-          <li @click="setLang('en')">{{ $t('english') }}</li>
-        </ul>
-      </div>
-    </div>
-    </footer>
+<template lang="html">
+  <header>
+    <nav class="navigation">
+      <ul class="layout-row layout-align-center-center">
+        <h1 class="hidden"></h1>
+        <nuxt-link tag="li" to="/" exact><a class="p-a-1 flex"><span class="heart"></span></a></nuxt-link>
+      </ul>
+    </nav>
+    <!-- <search-bar></search-bar> -->
+  </header>
 </template>
 
 <script>
-/* eslint-disable no-console */
-export default {
-  name: 'navigation',
-  data() {
-    return {
-      offset: 0,
-      itemWidth: 0,
-    };
-  },
-  methods: {
-    getActiveElement(path) {
-      return path ? this.$el.querySelector(`a[href='${path}']`) : this.$el.querySelector('.nuxt-link-active');
-    },
-    setInkBarPosition(el = this.getActiveElement()) {
-      if (!el) {
-        return;
-      }
-      this.offset = el.offsetLeft;
-      this.itemWidth = el.clientWidth - 20;
-    },
-    setLang(lang) {
-      this.$store.dispatch('lang/setLang', lang);
-    },
-  },
-  watch: {
-    $route: function watchRoute(next) {
-      const activeEl = this.getActiveElement(next.matched[0].path || '/');
-      this.setInkBarPosition(activeEl);
-    },
-  },
-  computed: {
-    computedOffset() {
-      return this.offset;
-    },
-    computedWidth() {
-      return this.itemWidth;
-    }
-  },
-  mounted() {
-    this.setInkBarPosition(this.getActiveElement());
-  },
-};
+
+export default {}
 </script>
-<style lang="stylus">
-  footer
-    overflow hidden
-    background-color: black
+
+<style lang="stylus" scoped>
+  @import '../assets/css/variables';
+  .heart {
+    background-color: $primaryColor;
+    display: inline-block;
+    height: 30px;
+    margin: 0 10px;
+    position: relative;
+    top: 0;
+    transform: rotate(-45deg) scale(0.7);
+    width: 30px;
+  }
+
+  .heart:before,
+  .heart:after {
+    content: "";
+    background-color: $primaryColor;
+    border-radius: 50%;
+    height: 30px;
+    position: absolute;
+    width: 30px;
+  }
+
+  .heart:before {
+    top: -15px;
+    left: 0;
+  }
+
+  .heart:after {
+    left: 15px;
+    top: 0;
+  }
+  .flex
+    flex-basis 100%
   .navigation
-    position absolute
-    bottom 0
-    width 100%
-  li
-    transition background-color 250ms ease-in
-    &.router-link-active
+    background-color $white
+    border-bottom: 1px solid #ebebeb;
+    li
       a
-        color #fff
-    a
-      padding 33px 20px
-      display inline-block
-      font-family Raleway
-      text-decoration none
-      font-size 10px
-      color #00d1b7
-      transition color 250ms ease-in
-      &:hover
-        color #fff
+        transition color 120ms ease-in-out
+        line-height 2em
+
+  img
+    height 40px
+    width 40px
+  a
+    color $primaryTextColor
     &:hover
-      background-color rgba(75, 75, 75, 0.5)
-
-  .ink-bar
-    border-top 1px solid #abaaab
-    position relative
-    left 10px
-    width calc(100vw - 20px)
-
-    .ink
-      transition transform 0.25s cubic-bezier(0.35, 0, 0.25, 1), width 0.125s cubic-bezier(0.35, 0, 0.25, 1)
-      height 2px
-      background-color #00d1b7
-      display inline-block
-      position absolute
-      left 0
-      top 0
-
+      color $primaryColor
 </style>
