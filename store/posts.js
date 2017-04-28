@@ -4,7 +4,7 @@ import store from '~store'
 export const state = {
   posts: [],
   post: {},
-  totalPages: 1,
+  totalPages: 1
 }
 
 export const mutations = {
@@ -21,14 +21,25 @@ export const mutations = {
 
 export const actions = {
   async FETCH_POSTS ({ state, commit }, page = 1) {
+    const { data } = await axios.get('/posts/posts.json');
     const start = (page - 1) * 10;
     const limit = start + 10;
-    const { data, headers } = await axios.get(`https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=${limit}`);
-    commit('SET_PAGES', headers['x-total-count'] / 10);
-    commit('SET_POSTS', data.sort((a, b) => a.id - b.id ).reverse());
+    const posts = data
+      .sort((a, b) => a.date - b.date )
+      .reverse()
+      .slice(start, limit);
+
+    commit('SET_PAGES', data.length / 10);
+    commit('SET_POSTS', posts);
   },
-  async FETCH_POST ({ commit }, id) {
-    const { data } = await axios.get('https://jsonplaceholder.typicode.com/posts/' + id);
-    commit('SET_POST', data);
+  async FETCH_POST ({ state, commit }, permalink) {
+    function isPost(post) {
+      return post.meta.permalink === permalink;
+    }
+    const post = state.posts.find((i) => isPost(i));
+    const { data } = await axios.get('/posts/' + post.md);
+    post.content = data;
+
+    commit('SET_POST', post);
   }
 }

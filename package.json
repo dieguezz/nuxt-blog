@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "marked": "^0.3.6",
     "nuxt": "^0.10.5",
     "vue-disqus": "^2.0.3"
   },

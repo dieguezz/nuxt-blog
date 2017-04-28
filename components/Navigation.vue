@@ -2,7 +2,7 @@
   <header>
     <nav class="navigation">
       <ul class="layout-row layout-align-center-center">
-        <h1 class="hidden"></h1>
+        <h1 hidden>Inicio</h1>
         <nuxt-link tag="li" to="/" exact><a class="p-a-1 flex"><span class="heart"></span></a></nuxt-link>
       </ul>
     </nav>

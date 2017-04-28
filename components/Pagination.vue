@@ -19,19 +19,6 @@
 
 export default {
   props: ['currentPage', 'totalPages'],
-  created() {
-    console.log('currentPage', this.currentPage)
-    console.log('totalPages', this.totalPages)
-    if (Object.keys(this.pages).length > 3) {
-      console.log('Is Fucking long', Object.keys(this.pages).length)
-      this.$forceUpdate();
-    };
-  },
-  beforeUpdate() {
-    console.log('currentPage', this.currentPage)
-    console.log('totalPages', this.totalPages)
-    console.log('Pages', Object.keys(this.pages).length)
-  },
   computed: {
     pages() {
       const items = {};
