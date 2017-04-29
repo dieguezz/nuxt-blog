@@ -4,7 +4,7 @@
     "dev": "nuxt"
   },
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.16.1",
     "marked": "^0.3.6",
     "nuxt": "^0.10.5",
     "vue-disqus": "^2.0.3"
