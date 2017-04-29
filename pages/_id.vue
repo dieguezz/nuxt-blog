@@ -20,6 +20,11 @@ import marked from 'marked';
 
 export default {
   cache: true,
+  head () {
+    return {
+      title: this.post.meta.title
+    }
+  },
   async fetch({ params, isServer }) {
     if (isServer) {
       await store.dispatch('posts/FETCH_POSTS')

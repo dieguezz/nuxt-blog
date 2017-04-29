@@ -29,7 +29,7 @@ export default {
   },
   head () {
     return {
-      title: 'Home'
+      title: 'Inicio'
     }
   },
   computed: {
