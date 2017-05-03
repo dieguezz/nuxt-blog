@@ -37,7 +37,7 @@ export const actions = {
       return post.meta.permalink === permalink;
     }
     const post = state.posts.find((i) => isPost(i));
-    const { data } = await axios.get('/posts/' + post.md);
+    const { data } = await axios.get('/posts' + post.md);
     post.content = data;
 
     commit('SET_POST', post);

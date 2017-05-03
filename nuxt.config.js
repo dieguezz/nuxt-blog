@@ -34,7 +34,7 @@ module.exports = {
   css: [{src: '~assets/css/main.styl', lang: 'stylus'}],
   dev: (process.env.NODE_ENV !== 'production'),
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+    baseUrl: process.env.NODE_ENV == 'production' ? 'http://irreflexivo.com' : 'http://localhost:3000'
   },
   head: {
     titleTemplate: '%s - Vue blog',
