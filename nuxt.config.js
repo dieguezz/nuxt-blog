@@ -34,14 +34,14 @@ module.exports = {
   css: [{src: '~assets/css/main.styl', lang: 'stylus'}],
   dev: (process.env.NODE_ENV !== 'production'),
   env: {
-    baseUrl: process.env.NODE_ENV == 'production' ? 'http://irreflexivo.com' : 'http://localhost:3000'
+    baseUrl: process.env.NODE_ENV == 'production' ? 'https://irreflexivo.com' : 'http://localhost:3000'
   },
   head: {
     titleTemplate: '%s - Vue blog',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Meta description' }
+      { hid: 'description', name: 'description', content: 'Blog personal donde escribo las cosas que me pasan o se me ocurren' }
     ],
     link: [
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto' }
@@ -63,8 +63,5 @@ module.exports = {
     base: '/',
     mode: 'history',
     middleware: ['i18n']
-  },
-  transition: {
-    name: 'fade',
-  },
+  }
 };

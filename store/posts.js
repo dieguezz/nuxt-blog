@@ -21,6 +21,7 @@ export const mutations = {
 
 export const actions = {
   async FETCH_POSTS ({ state, commit }, page = 1) {
+    console.log('Fetching posts...')
     const { data } = await axios.get('/posts/posts.json');
     const start = (page - 1) * 10;
     const limit = start + 10;
@@ -33,13 +34,24 @@ export const actions = {
     commit('SET_POSTS', posts);
   },
   async FETCH_POST ({ state, commit }, permalink) {
+    console.log('Fetching post...')
+
     function isPost(post) {
       return post.meta.permalink === permalink;
     }
-    const post = state.posts.find((i) => isPost(i));
-    const { data } = await axios.get('/posts' + post.md);
-    post.content = data;
 
-    commit('SET_POST', post);
+    async function setPost(post) {
+      const { data } = await axios.get('/posts' + post.md);
+      post.content = data;
+      commit('SET_POST', post);
+    }
+
+    const { data } = await axios.get('/posts/posts.json');
+    const post = data.find((i) => isPost(i));
+
+
+    await setPost(post);
+
+
   }
 }
