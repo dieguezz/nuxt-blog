@@ -22,7 +22,7 @@ export const mutations = {
 export const actions = {
   async FETCH_POSTS ({ state, commit }, page = 1) {
     console.log('Fetching posts...')
-    const { data } = await axios.get('/posts/posts.json');
+    const data  = await require('~static/posts/posts.json');
     const start = (page - 1) * 10;
     const limit = start + 10;
     const posts = data
@@ -41,12 +41,12 @@ export const actions = {
     }
 
     async function setPost(post) {
-      const { data } = await axios.get('/posts' + post.md);
+      const { data } = await axios.get(`/posts/${post.md}`);
       post.content = data;
       commit('SET_POST', post);
     }
 
-    const { data } = await axios.get('/posts/posts.json');
+    const data  = await require('~static/posts/posts.json');
     const post = data.find((i) => isPost(i));
 
 
