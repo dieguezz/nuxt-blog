@@ -23,12 +23,14 @@ export const actions = {
   async FETCH_POSTS ({ state, commit }, page = 1) {
     const start = (page - 1) * 10;
     const limit = start + 10;
-    const { data } = await axios.get(`https://dieguin-blog-api.herokuapp.com/articles?page=${page}&limit=${limit}&sort=-createdAt`)
+    const { data, headers } = await axios.get(`https://dieguin-blog-api.herokuapp.com/articles?page=${page}&limit=${limit}&sort=-createdAt`)
+    console.log(headers);
     commit('SET_PAGES', data.length / 10);
     commit('SET_POSTS', data);
   },
   async FETCH_POST ({ state, commit }, permalink) {
-    const { data } = await axios.get(`https://dieguin-blog-api.herokuapp.com/articles/${permalink}`)
+    const { data, headers } = await axios.get(`https://dieguin-blog-api.herokuapp.com/articles/${permalink}`)
+    console.log(headers);
 
     commit('SET_POST', data);
 

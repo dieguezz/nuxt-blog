@@ -25,7 +25,7 @@ module.exports = {
     ],
     plugins: [],
     postcss: [],
-    vendor: ['axios'],
+    vendor: ['axios', 'marked'],
   },
   cache: {
     max: 1000,

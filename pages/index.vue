@@ -23,9 +23,6 @@ export default {
   cache: true,
   async fetch ({ store, query, redirect }) {
     await store.dispatch('posts/FETCH_POSTS', query.page);
-    if (!query.page) {
-      // return redirect('/?page=1')
-    }
   },
   head () {
     return {
