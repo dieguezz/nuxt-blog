@@ -1,7 +1,7 @@
 <template>
   <article class="post p-t-1">
     <header class="p-a-1 p-x-2">
-      <h1 itemprop="name headline" class="max title title-1">{{post.meta.title}}</h1>
+      <h1 itemprop="name headline" class="max title title-1">{{post.title}}</h1>
       <time datetime="" class="date max title text-1 m-b-1 p-t-1" itemprop="dateModified">10 de abril de 2017</time>
     </header>
     <div v-html="compiledMD" class="post-body max p-x-2">
@@ -22,7 +22,7 @@ export default {
   cache: true,
   head () {
     return {
-      title: this.post.meta.title
+      title: this.post.title
     }
   },
   async fetch({ params }) {
@@ -38,7 +38,7 @@ export default {
       return this.$store.state.posts.post;
     },
     compiledMD() {
-      return marked(this.post.content, { sanitize: true });
+      return marked(this.post.md, { sanitize: true });
     }
   },
   components: {

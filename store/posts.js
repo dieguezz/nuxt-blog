@@ -21,37 +21,16 @@ export const mutations = {
 
 export const actions = {
   async FETCH_POSTS ({ state, commit }, page = 1) {
-    console.log('Fetching posts...')
-    const data  = await require('~static/posts/posts.json');
     const start = (page - 1) * 10;
     const limit = start + 10;
-    const posts = data
-      .sort((a, b) => a.date - b.date )
-      .reverse()
-      .slice(start, limit);
-
+    const { data } = await axios.get(`https://dieguin-blog-api.herokuapp.com/articles?page=${page}&limit=${limit}&sort=-createdAt`)
     commit('SET_PAGES', data.length / 10);
-    commit('SET_POSTS', posts);
+    commit('SET_POSTS', data);
   },
   async FETCH_POST ({ state, commit }, permalink) {
-    console.log('Fetching post...')
+    const { data } = await axios.get(`https://dieguin-blog-api.herokuapp.com/articles/${permalink}`)
 
-    function isPost(post) {
-      return post.meta.permalink === permalink;
-    }
-
-    async function setPost(post) {
-      const { data } = await axios.get(`/posts/${post.md}`);
-      post.content = data;
-      commit('SET_POST', post);
-    }
-
-    const data  = await require('~static/posts/posts.json');
-    const post = data.find((i) => isPost(i));
-
-
-    await setPost(post);
-
+    commit('SET_POST', data);
 
   }
 }
