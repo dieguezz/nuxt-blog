@@ -2,7 +2,7 @@
   <article class="post p-t-1">
     <header class="p-a-1 p-x-2">
       <h1 itemprop="name headline" class="max title title-1">{{post.title}}</h1>
-      <time datetime="" class="date max title text-1 m-b-1 p-t-1" itemprop="dateModified">10 de abril de 2017</time>
+      <time :datetime="post.updatedAt" class="date max title text-1 m-b-1 p-t-1" itemprop="dateModified">{{post.updatedAt}}</time>
     </header>
     <div v-html="compiledMD" class="post-body max p-x-2"></div>
     <div class="comments max p-a-2">

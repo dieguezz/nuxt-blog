@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.16.1",
     "marked": "^0.3.6",
+    "moment": "^2.18.1",
     "nuxt": "0.10.7",
     "vue-disqus": "^2.0.3"
   },

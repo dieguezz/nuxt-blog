@@ -5,7 +5,7 @@
           <article itemscope itemtype="https://schema.org/Article" class="post-item">
             <header>
               <h1 itemprop="name headline" class="title title-2"><nuxt-link :to="'/' + item.permalink" :title="item.title">{{item.title}}</nuxt-link></h1>
-              <time datetime="" class="date title text-1 m-b-1" itemprop="dateModified">{{item.date}}</time>
+              <time :datetime="item.updatedAt" class="date title text-1 m-b-1" itemprop="dateModified">{{item.updatedAt}}</time>
             </header>
             <p itemprop="description" class="text text-1">{{item.resume}}</p>
           </article>
